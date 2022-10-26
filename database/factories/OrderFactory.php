@@ -20,7 +20,8 @@ class OrderFactory extends Factory
         Schema::enableForeignKeyConstraints();
 
         return [
-            'date_order' => $this->faker->date($format = 'Y-m-d', $min = $max = 'now'),
+            // 'date_order' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'date_order' => $this->faker->dateTimeBetween('now', '2022-11-15'),
             'client' => $this->faker->name(),
             'document' => $this->faker->unique()->randomNumber($nbDigits = 8, $strict = true)
         ];

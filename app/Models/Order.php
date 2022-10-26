@@ -14,4 +14,10 @@ class Order extends Model
         'client',
         'document'
     ];
+
+    public function Product()
+    {
+        return $this->belongsToMany('App\models\Product', 'App\models\OrderProduct', 'order_id', 'product_id' )->withPivot('quantity');
+    }
+
 }

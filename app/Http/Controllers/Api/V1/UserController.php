@@ -25,7 +25,7 @@ class UserController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(['error' => $validator->messages()], 200);
+                return response()->json(['error' => $validator->getMessageBag()], 200);
             }
 
             $user = User::create([

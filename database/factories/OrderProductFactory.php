@@ -2,7 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class OrderProductFactory extends Factory
 {
@@ -13,8 +17,14 @@ class OrderProductFactory extends Factory
      */
     public function definition()
     {
+        Schema::disableForeignKeyConstraints();
+        DB::table('order_products')->truncate();
+        Schema::enableForeignKeyConstraints();
+
         return [
-            //
+            'order_id' => Order::all()->random()->id,
+            'product_id' => Product::all()->random()->id,
+            'quantity' => $this->faker->numberBetween($min = 1, $max = 100)
         ];
     }
 }
